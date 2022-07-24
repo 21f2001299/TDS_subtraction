@@ -1,4 +1,5 @@
 import streamlit as st
+import  pandas as pd
 
 st.write('''
 #App for Substracting 2 Numbers
@@ -8,9 +9,18 @@ st.write('''
 
 st.header('Number input:')
 
+def user_input_features():
+  first_num = st.number_input('FIRST_NUMBER')
+  second_num = st.number_input('SECOND_NUMBER')
+  
+  data = {'FIRST_NUMBER':first_num,
+          'SECOND_NUMBER':second_num
+         }
+  features = pd.DataFrame(data, index=[0])
+  return features
 
-first_num = st.number_input('FIRST_NUMBER')
-second_num = st.number_input('SECOND_NUMBER')
+df = user_input_features()
+result = df.iloc[0,0]-df.iloc[0,1]
 
-
-st.write(f'The result of substracting {first_num} from {second_num} is: {first_num-SECOND_NUMBER}')
+st.subheader('Result')
+st.write(result)
